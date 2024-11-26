@@ -1,4 +1,4 @@
--- CREATE students_performance table
+-- CREATE students_performance table --
 CREATE TABLE students_performance(
     id SERIAL PRIMARY KEY,
     age INT,
