@@ -14,7 +14,7 @@ CREATE TABLE students_performance(
     classroom INT,
     grade INT);
 
--- Question # 2 
+-- Question # 2  --
 DROP PROCEDURE IF EXISTS sp_numero_aluno_aprovado;
 
 CREATE OR REPLACE PROCEDURE sp_numero_aluno_aprovado()
