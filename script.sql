@@ -49,3 +49,29 @@ BEGIN
 END;
 $$;
 
+
+-- Question # 4 
+CREATE OR REPLACE FUNCTION fn_alunos_estudiosos()
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    resultado INT;
+BEGIN
+    SELECT COUNT(id)
+    INTO resultado
+    FROM students_performance
+    WHERE salary = 5 AND prep_exam = 2;
+
+    RETURN resultado;
+END;
+$$;
+
+DO $$
+DECLARE
+    resultado INT;
+BEGIN
+    resultado := fn_alunos_estudiosos();
+    RAISE NOTICE 'Número de alunos: %', resultado;
+END;
+$$;
