@@ -24,8 +24,28 @@ DECLARE
 	alunos INT;
 BEGIN
     SELECT count(id) INTO alunos from students_performance WHERE father_edu = 6 or mother_edu = 6 AND grade >= 3.49;
-    RAISE NOTICE 'Os alunos aprovados são os %', alunos;
+    RAISE NOTICE 'Os alunos aprovados são %', alunos;
 END;
 $$
-
 CALL sp_numero_aluno_aprovado();
+
+-- Question # 3
+CREATE OR REPLACE PROCEDURE alunos_aprovado_estudam_sozinho(OUT p_quantidade INT)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT COUNT(id) INTO p_quantidade FROM students_performance WHERE partner = 2 AND grade >= 3.49;
+END;
+$$;
+
+
+
+DO $$
+DECLARE
+    v_quantidade INT;
+BEGIN
+    CALL alunos_aprovado_estudam_sozinho(v_quantidade);
+    RAISE NOTICE 'A quantidade de alunos aprovados que estudam sozinhos são %', v_quantidade;
+END;
+$$;
+
